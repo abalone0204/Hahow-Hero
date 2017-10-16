@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import api from '../middlewares/api'
+import calculator from '../middlewares/calculator'
 import rootReducer from '../reducers'
 
 const devToolsEnhancer = typeof window !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null
@@ -11,7 +12,7 @@ const configureStore = preloadedState => {
 		rootReducer,
 		preloadedState,
 		composeEnhancers(
-			applyMiddleware(thunk, api),
+			applyMiddleware(thunk, api, calculator),
 		)
 	)
 
