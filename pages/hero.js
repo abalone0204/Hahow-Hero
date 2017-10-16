@@ -3,17 +3,19 @@ import withRedux from 'next-redux-wrapper'
 import configureStore from '../store/configureStore'
 import fetchHeroes from '../actions/fetchHeroes'
 import fetchHeroProfile from '../actions/fetchHeroProfile'
+import submitHeroProfile from '../actions/submitHeroProfile'
 import updateHeroAttr from '../actions/updateProfileAttr'
 import HeroProfile from '../components/HeroProfile'
 import Layout from '../layouts/Main'
 
-const Hero =  ({hero, currentHero, updateHeroAttr}) => {
+const Hero =  ({ hero, currentHero, updateHeroAttr, submitHeroProfile}) => {
 	return (
 		<Layout heroes={hero.data}>
 			Hero!
 			<HeroProfile
 				{...currentHero}
 				updateHeroAttr={(attr, val) => updateHeroAttr(currentHero.id, attr, val)}
+				submitHeroProfile={(body) => submitHeroProfile(currentHero.id, body)}
 			/>
 		</Layout>
 	)
@@ -39,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
 		fetchHeroes: bindActionCreators(fetchHeroes, dispatch),
 		fetchHeroProfile: bindActionCreators(fetchHeroProfile, dispatch),
 		updateHeroAttr: bindActionCreators(updateHeroAttr, dispatch),
+		submitHeroProfile: bindActionCreators(submitHeroProfile, dispatch),
 	}
 }
 

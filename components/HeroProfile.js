@@ -9,7 +9,7 @@ const UpdateAttr = ({attr, val, update}) => {
 	)
 }
 
-const HeroProfile = ({ str, int, agi, luk, remain,updateHeroAttr,  }) => {
+const HeroProfile = ({ str, int, agi, luk, remain,updateHeroAttr, submitHeroProfile }) => {
 	return (
 		<div>
 			<UpdateAttr attr="str" val={str} update={updateHeroAttr}/>
@@ -17,7 +17,11 @@ const HeroProfile = ({ str, int, agi, luk, remain,updateHeroAttr,  }) => {
 			<UpdateAttr attr="agi" val={agi} update={updateHeroAttr}/>
 			<UpdateAttr attr="luk" val={luk} update={updateHeroAttr}/>
 			<p>remain: {remain}</p>
-			<button>save</button>
+			<button onClick={() => {
+				submitHeroProfile({
+					str, int, agi, luk,
+				})
+			}}>save</button>
 		</div>
 	)
 }

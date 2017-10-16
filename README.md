@@ -27,7 +27,10 @@ $> npm install && npm build && npm start
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
 
 # 在這份專案中你遇到的困難、問題，以及解決的方法
-
+- 決定是否要將 profile 用 nested 的方式放在 heroes 這個 reducer 中
+- fetch data asynchronously on server-side
+  - async, await 解決 -> `store.dispatch` 可以回傳 Promise
+- 剩餘點數
 ---
 
 ## Dev-Plan
@@ -69,20 +72,27 @@ Hero 能力值不能小於零
 
 ```
 {
-  heroes: {
+  hero: {
     status,
     error,
     data: [{
       id,
       name,
-      image,
-      profile: {
+      image
+    }]
+  },
+  profile: {
+    status,
+    error,
+    data: {
+      [id]: {
         str,
         agi,
         luk,
-        int
+        int,
+        remain
       }
-    }]
+    }
   }
 }
 ```
