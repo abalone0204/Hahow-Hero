@@ -10,6 +10,7 @@ app.prepare()
 	.then(() => {
 		const server = express()
 
+		server.use('/static', express.static('static'))
 		server.get('/', (req, res) => {
 			res.redirect('/heroes')
 		})
@@ -21,6 +22,7 @@ app.prepare()
 		})
 
 		server.get('*', (req, res) => {
+			req.url = req.url.replace(/\/$/, '')
 			return handle(req, res)
 		})
 
