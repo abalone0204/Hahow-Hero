@@ -2,32 +2,41 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import configureStore from '../store/configureStore'
 import fetchHeroes from '../actions/fetchHeroes'
-
+import fetchHeroProfile from '../actions/fetchHeroProfile'
+import HeroProfile from '../components/HeroProfile'
 import Layout from '../layouts/Main'
 
-const Hero =  (props) => {
+const Hero =  ({hero, currentHero}) => {
 	return (
-		<Layout heroes={props.hero.data}>
-      Hero!
+		<Layout heroes={hero.data}>
+			Hero!
+			<HeroProfile {...currentHero}/>
 		</Layout>
 	)
 }
 
 Hero.getInitialProps = async function (context) {
 	const { isServer, store } = context
-	const isInit = () => store.getState().hero.status === 'init'
-	if (isInit()) {
-		await store.dispatch(fetchHeroes())
-	}
+	await Promise.all([
+		store.dispatch(fetchHeroProfile(context.query.id)),
+		store.dispatch(fetchHeroes())
+	])
 	return { isServer }
+}
+
+const mapStateToProps = (state, ownProps) => {
+	const { id } = ownProps.url.query
+	const { hero, profile } = state
+	return { hero, profile, currentHero: profile.data[id] }
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchHeroes: bindActionCreators(fetchHeroes, dispatch),
+		fetchHeroProfile: bindActionCreators(fetchHeroProfile, dispatch),
 	}
 }
 
-export default withRedux(configureStore, state => state, mapDispatchToProps)(Hero)
+export default withRedux(configureStore, mapStateToProps, mapDispatchToProps)(Hero)
 
 

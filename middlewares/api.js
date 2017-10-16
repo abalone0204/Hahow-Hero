@@ -6,21 +6,12 @@ const API_ROOT = 'https://hahow-recruit.herokuapp.com/'
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (endpoint) => {
+const callApi = async (endpoint, method='GET') => {
 	const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
-
-	return fetch(fullUrl)
-		.then(response =>
-			response.json().then(json => {
-				if (!response.ok) {
-					return Promise.reject(json)
-				}
-				return json
-				// return Object.assign({},
-				// 	normalize(json, schema),
-				// )
-			})
-		)
+	const res = await fetch(fullUrl, { method })
+	const json = await res.json()
+	if (!res.ok) return Promise.reject(json)
+	return Promise.resolve(json)
 }
 
 export default store => next => action => {
@@ -30,7 +21,7 @@ export default store => next => action => {
 	}
 
 	let { endpoint } = callAPI
-	const { types } = callAPI
+	const { types, params } = callAPI
 
 	if (typeof endpoint === 'function') {
 		endpoint = endpoint(store.getState())
@@ -57,10 +48,15 @@ export default store => next => action => {
 	next(actionWith({ type: requestType }))
 
 	return callApi(endpoint).then(
-		response => next(actionWith({
-			response,
-			type: successType
-		})),
+		response => {
+			if (params && params.id) {
+				response.id = params.id
+			}
+			next(actionWith({
+				response,
+				type: successType
+			}))
+		},
 		error => next(actionWith({
 			type: failureType,
 			error: error.message || 'Something bad happened'

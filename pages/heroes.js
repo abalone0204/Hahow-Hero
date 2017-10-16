@@ -15,10 +15,7 @@ const Heroes = (props) => {
 
 Heroes.getInitialProps = async function (context) {
 	const { isServer, store } = context
-	const isInit = () => store.getState().hero.status === 'init'
-	if (isInit()) {
-		await store.dispatch(fetchHeroes())
-	}
+	await store.dispatch(fetchHeroes())
 	return { isServer }
 }
 
