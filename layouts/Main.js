@@ -12,12 +12,25 @@ Router.onRouteChangeError = () => NProgress.done()
 const Main = (props) => (
 	<div style={{ marginBottom: 20 }}>
 		<Head>
-			{/* Import CSS for nprogress */}
+			<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+			<link prefetch href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"/>
 			<link rel='stylesheet' type='text/css' href='/static/ngprogress.css' />
 		</Head>
 		<HeroList heroes={props.heroes}/>
-		<h2>Main layout</h2>
-		{props.children}
+		<div className="main">
+			{props.children}
+		</div>
+		<style jsx global>{`
+		body {
+			font-family: 'Ubuntu', sans-serif;
+			background: #282a2c;
+			color: white;
+		}
+		.main {
+			max-width: 768px;
+			margin: 0 auto;
+		}
+		`}</style>
 	</div>
 )
 

@@ -26,7 +26,7 @@ const HeroCard = (props) => {
 			<div className={isActive ? 'card active' : 'card'}>
 				<div >
 					<img src={props.image} alt={`image of ${props.name}`}/>
-					<p>name: {props.name}</p>
+					<p>{props.name}</p>
 				</div>
 				<style jsx>{`
 			.card {
@@ -35,13 +35,25 @@ const HeroCard = (props) => {
 				text-align: center;
 				max-width: 250px;
 			}
-			.active {
-				background: #00b69a;
-				color: white;
+			.active img {
+				background: linear-gradient(#004746, #111111);
+				border: 6px solid #00a4a2;
+				box-shadow: 0 0 15px #00fffd;
+				filter: brightness(1);
+			}
+			.active img:hover {
+				border: 6px solid #00fffd;
+				box-shadow: 0 0 25px #00fffd;
 			}
 			img {
 				display: block;
 				margin: 0 auto;
+				border-radius: 50%;
+				height: 200px;
+				padding: 5px;
+				background-color: transparent;
+				transition: all 600ms ease-out;
+				filter: brightness(0.4);
 			}
 			`}</style>
 			</div>

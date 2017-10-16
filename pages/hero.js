@@ -11,7 +11,6 @@ import Layout from '../layouts/Main'
 const Hero =  ({ hero, currentHero, updateHeroAttr, submitHeroProfile}) => {
 	return (
 		<Layout heroes={hero.data}>
-			Hero!
 			<HeroProfile
 				{...currentHero}
 				updateHeroAttr={(attr, val) => updateHeroAttr(currentHero.id, attr, val)}
