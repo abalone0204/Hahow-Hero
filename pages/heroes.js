@@ -16,22 +16,10 @@ const Heroes = (props) => {
 Heroes.getInitialProps = async function (context) {
 	const { isServer, store } = context
 	const isInit = () => store.getState().hero.status === 'init'
-	return new Promise((resolve) => {
-		if (isInit()) {
-			store.dispatch(fetchHeroes())
-			/*
-			 Wait until process of fetching heroes completed
-			*/
-			const unsubscribe = store.subscribe(() => {
-				if (!isInit()) {
-					unsubscribe()
-					resolve({ isServer })
-				}
-			})
-		} else {
-			resolve({ isServer })
-		}
-	})
+	if (isInit()) {
+		await store.dispatch(fetchHeroes())
+	}
+	return { isServer }
 }
 
 const mapDispatchToProps = (dispatch) => {
