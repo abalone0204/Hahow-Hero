@@ -51,14 +51,13 @@ $> npm install && npm build && npm start
 
 ### Features
 
-- [ ] `HeroList`: 在頁面上水平置中 (API: `GET https://hahow-recruit.herokuapp.com/heroes`)
-  - [ ] `HeroCard`: 由左到右排列，如果在小尺寸螢幕上列表中的元素超出畫面就自動往下排列
-    - [ ] 必須包含圖片和名字，且是可以點擊的連結
-    - [ ] 連結會連到單一Hero的 “Hero Profile Page“ ，`HeroList` 依然在相同位置，並且不因切換連結重新 render
-    - [ ]
-  - [ ] Show on HeroList Page
-  - [ ] Show on Hero Profile Page
-    - [ ] 當在 “Hero Profile Page“ 時要將現在所選中的 “Hero Card“ 用不同的顏色或圖案標示出來
+- [x] `HeroList`: 在頁面上水平置中 (API: `GET https://hahow-recruit.herokuapp.com/heroes`)
+  - [x] `HeroCard`: 由左到右排列，如果在小尺寸螢幕上列表中的元素超出畫面就自動往下排列
+    - [x] 必須包含圖片和名字，且是可以點擊的連結
+    - [x] 連結會連到單一Hero的 “Hero Profile Page“ ，`HeroList` 依然在相同位置，並且不因切換連結重新 render
+  - [x] Show on HeroList Page
+  - [x] Show on Hero Profile Page
+    - [x] 當在 “Hero Profile Page“ 時要將現在所選中的 “Hero Card“ 用不同的顏色或圖案標示出來
 
 - [ ] `HeroProfile`
   - [ ] Show on Hero Profile Page
@@ -66,4 +65,30 @@ $> npm install && npm build && npm start
   - [ ] “Hero Profile“ 最下方有一個儲存按鈕，按下按鈕後，會將現在設定的能力值提交更新 server 上的資料 (API: `PATCH https://hahow-recruit.herokuapp.com/users/1/profile`)，送出的能力值總和必須與拿到的時候相同
 Hero 能力值不能小於零
 
+### State
+
+```
+{
+  heroes: {
+    status,
+    error,
+    data: [{
+      id,
+      name,
+      image,
+      profile: {
+        str,
+        agi,
+        luk,
+        int
+      }
+    }]
+  }
+}
+```
+
+actions:
+- getHeroes
+- getHeroProfile
+- updateHeroProfile
 
