@@ -22,6 +22,37 @@ $> npm install && npm build && npm start
 
 # 專案的架構，Web的架構邏輯
 
+```
+├── README.md                   # 就是個 README
+├── package.json                # 關於這個 package 的相依套件、各種 scripts⋯⋯等等
+├── .eslintrc.js                # linter 設定
+├── server.js                   # custom application server，讓 client 和 server 的 routing 都能正常運作
+├── actions                     # 觸發畫面變動的 action。包括但不限於 redux 中的 action creator，
+│   ├── fetchHeroProfile.js
+│   ├── fetchHeroes.js
+│   ├── submitHeroProfile.js
+│   └── updateProfileAttr.js
+├── components                  # Stateless component(redux 中的 dumb components，本身不持有 state)
+│   ├── HeroCard.js
+│   ├── HeroList.js
+│   └── HeroProfile.js
+├── constants                   # 所有在這個 Project 中用到的 constants（主要為 action types）
+├── layouts                     # layout 的 component，同樣為 stateless，但跟一般 components 的使用情境差很多，所以抽出來放
+│   └── Main.js
+├── middlewares                 # 一些在 redux 中不適合放在 reducer 或是在 view layer 直接處理的邏輯會放在這
+│   ├── api.js                  #   所有有 call api 的 action 都會經過這裡來處理
+│   └── calculator.js           #   處理更新 hero profile 時會出現的驗證邏輯
+├── pages                       # 每個 component 都代表一個頁面
+│   ├── hero.js
+│   └── heroes.js
+├── reducers                    # redux 中用來生成 state 的 function
+│   ├── hero.js
+│   ├── index.js
+│   └── profile.js
+├── static                      # 放靜態資源的地方
+└── store                       # Application 在畫面上的 state 都是根據這裡來顯示
+```
+
 # 你對於所有使用到的第三方library的理解，以及他們的功能簡介
 
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
@@ -62,10 +93,10 @@ $> npm install && npm build && npm start
   - [x] Show on Hero Profile Page
     - [x] 當在 “Hero Profile Page“ 時要將現在所選中的 “Hero Card“ 用不同的顏色或圖案標示出來
 
-- [ ] `HeroProfile`
-  - [ ] Show on Hero Profile Page
-  - [ ] 會顯示 Hero 的能力值 (API: `GET https://hahow-recruit.herokuapp.com/users/:userId/profile`) ，並且在數值左右各有一個按鈕，負責做增減功能，另外有一個顯示剩餘的能力點數的地方，一開始預設值是 0
-  - [ ] “Hero Profile“ 最下方有一個儲存按鈕，按下按鈕後，會將現在設定的能力值提交更新 server 上的資料 (API: `PATCH https://hahow-recruit.herokuapp.com/users/1/profile`)，送出的能力值總和必須與拿到的時候相同
+- [x] `HeroProfile`
+  - [x] Show on Hero Profile Page
+  - [x] 會顯示 Hero 的能力值 (API: `GET https://hahow-recruit.herokuapp.com/users/:userId/profile`) ，並且在數值左右各有一個按鈕，負責做增減功能，另外有一個顯示剩餘的能力點數的地方，一開始預設值是 0
+  - [x] “Hero Profile“ 最下方有一個儲存按鈕，按下按鈕後，會將現在設定的能力值提交更新 server 上的資料 (API: `PATCH https://hahow-recruit.herokuapp.com/users/1/profile`)，送出的能力值總和必須與拿到的時候相同
 Hero 能力值不能小於零
 
 ### State
@@ -101,4 +132,5 @@ actions:
 - getHeroes
 - getHeroProfile
 - updateHeroProfile
+-
 
