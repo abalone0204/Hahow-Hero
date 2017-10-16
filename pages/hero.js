@@ -7,7 +7,7 @@ import Layout from '../layouts/Main'
 
 const Hero =  (props) => {
 	return (
-		<Layout heroes={props.heroes.data}>
+		<Layout heroes={props.hero.data}>
       Hero!
 		</Layout>
 	)
@@ -15,7 +15,7 @@ const Hero =  (props) => {
 
 Hero.getInitialProps = async function (context) {
 	const { isServer, store } = context
-	const isInit = () => store.getState().heroes.status === 'init'
+	const isInit = () => store.getState().hero.status === 'init'
 	return new Promise((resolve) => {
 		if (isInit()) {
 			store.dispatch(fetchHeroes())
