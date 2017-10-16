@@ -4,9 +4,9 @@ const AttrBlock = ({attr, val, update}) => {
 	return (
 		<div className="container">
 			<span className="attr">{attr}</span>
-			<div className="value">
+			<div className="options">
 				<Button onClick={() => update(attr, 'inc')}>+</Button>
-				<span>{val}</span>
+				<span className="value">{val}</span>
 				<Button onClick={() => update(attr, 'dec')}>-</Button>
 			</div>
 			<style jsx>{`
@@ -20,6 +20,10 @@ const AttrBlock = ({attr, val, update}) => {
          text-align: center;
        }
        .value {
+         width: 2rem;
+         text-align: center;
+       }
+       .options {
           flex: 1;
           display: flex;
           align-items: center;
