@@ -25,30 +25,17 @@ $> npm install && npm build && npm start
 ```
 ├── README.md                   # 就是個 README
 ├── package.json                # 關於這個 package 的相依套件、各種 scripts⋯⋯等等
-├── .eslintrc.js                # linter 設定
 ├── server.js                   # custom application server，讓 client 和 server 的 routing 都能正常運作
+├── .eslintrc.js                # linter 設定
 ├── actions                     # 觸發畫面變動的 action。包括但不限於 redux 中的 action creator，
-│   ├── fetchHeroProfile.js
-│   ├── fetchHeroes.js
-│   ├── submitHeroProfile.js
-│   └── updateProfileAttr.js
 ├── components                  # Stateless component(redux 中的 dumb components，本身不持有 state)
-│   ├── HeroCard.js
-│   ├── HeroList.js
-│   └── HeroProfile.js
 ├── constants                   # 所有在這個 Project 中用到的 constants（主要為 action types）
 ├── layouts                     # layout 的 component，同樣為 stateless，但跟一般 components 的使用情境差很多，所以抽出來放
-│   └── Main.js
 ├── middlewares                 # 一些在 redux 中不適合放在 reducer 或是在 view layer 直接處理的邏輯會放在這
 │   ├── api.js                  #   所有有 call api 的 action 都會經過這裡來處理
 │   └── calculator.js           #   處理更新 hero profile 時會出現的驗證邏輯
 ├── pages                       # 每個 component 都代表一個頁面
-│   ├── hero.js
-│   └── heroes.js
 ├── reducers                    # redux 中用來生成 state 的 function
-│   ├── hero.js
-│   ├── index.js
-│   └── profile.js
 ├── static                      # 放靜態資源的地方
 └── store                       # Application 在畫面上的 state 都是根據這裡來顯示
 ```
