@@ -3,12 +3,12 @@ import withRedux from 'next-redux-wrapper'
 import configureStore from '../store/configureStore'
 import fetchHeroes from '../actions/fetchHeroes'
 import Layout from '../layouts/Main'
+import Opening from '../components/Opening'
 
 const Heroes = (props) => {
 	return (
 		<Layout heroes={props.hero.data}>
-			<h2>Heroes!</h2>
-			<h2>status:  {props.hero.status}</h2>
+			<Opening/>
 		</Layout>
 	)
 }

@@ -1,9 +1,10 @@
 import AttrBlock  from './AttrBlock'
 import Button from './Button'
 
-const HeroProfile = ({ str, int, agi, luk, remain, updateHeroAttr, submitHeroProfile }) => {
+const HeroProfile = ({ name , str, int, agi, luk, remain, updateHeroAttr, submitHeroProfile }) => {
 	return (
 		<div className="container">
+			<h2>{name}</h2>
 			<div className="status">
 				<AttrBlock attr="str" val={str} update={updateHeroAttr}/>
 				<AttrBlock attr="int" val={int} update={updateHeroAttr}/>
@@ -19,11 +20,25 @@ const HeroProfile = ({ str, int, agi, luk, remain, updateHeroAttr, submitHeroPro
 				}}>save</Button>
 			</div>
 			<style jsx>{`
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			h2 {
+				width: 100%;
+				text-align: center;
+				margin: 5px auto;
+			}
 			.container {
 				display: flex;
 				flex-wrap: wrap;
+				animation: fadeIn 2s 1;
 				justify-content: center;
-				font-size: 2rem;
+				font-size: 1.5rem;
 				background: linear-gradient(#004746, #111111);
 				border: 6px solid #00a4a2;
 				box-shadow: 0 0 15px #00fffd;

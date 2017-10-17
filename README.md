@@ -50,6 +50,10 @@ $> npm install && npm build && npm start
 - fetch data asynchronously on server-side
   - async, await 解決 -> `store.dispatch` 可以回傳 Promise
 - 剩餘點數
+  - 移到 middleware 處理
+- 開場動畫結束後要把那張 gif 處理掉
+ - workaround: setTimeout 把東西變成 display: none
+
 ---
 
 ## Dev-Plan
@@ -78,6 +82,7 @@ $> npm install && npm build && npm start
     - [x] 必須包含圖片和名字，且是可以點擊的連結
     - [x] 連結會連到單一Hero的 “Hero Profile Page“ ，`HeroList` 依然在相同位置，並且不因切換連結重新 render
   - [x] Show on HeroList Page
+    - [x] 開場小動畫
   - [x] Show on Hero Profile Page
     - [x] 當在 “Hero Profile Page“ 時要將現在所選中的 “Hero Card“ 用不同的顏色或圖案標示出來
 
@@ -119,3 +124,4 @@ Hero 能力值不能小於零
 
 ### View
 - [Iron Man Login Form CSS Version by khoazany](https://codepen.io/khoazany/pen/qbGng)
+

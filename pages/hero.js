@@ -8,7 +8,7 @@ import updateHeroAttr from '../actions/updateProfileAttr'
 import HeroProfile from '../components/HeroProfile'
 import Layout from '../layouts/Main'
 
-const Hero =  ({ hero, currentHero, updateHeroAttr, submitHeroProfile}) => {
+const Hero =  ({ hero, currentHero, updateHeroAttr, submitHeroProfile }) => {
 	return (
 		<Layout heroes={hero.data}>
 			<HeroProfile
@@ -32,7 +32,8 @@ Hero.getInitialProps = async function (context) {
 const mapStateToProps = (state, ownProps) => {
 	const { id } = ownProps.url.query
 	const { hero, profile } = state
-	return { hero, profile, currentHero: profile.data[id] }
+
+	return { hero, profile, currentHero: { ...hero.data.find(h => h.id === id) , ...profile.data[id]} }
 }
 
 const mapDispatchToProps = (dispatch) => {
