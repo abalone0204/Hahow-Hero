@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Project for applying Hahow's front-end",
   "main": "index.js",
+  "engines": {
+    "node": "7.8.0"
+  },
   "scripts": {
     "build": "next build",
     "dev": "node server.js",

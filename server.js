@@ -9,7 +9,6 @@ const handle = app.getRequestHandler()
 app.prepare()
 	.then(() => {
 		const server = express()
-
 		server.use('/static', express.static('static'))
 		server.get('/', (req, res) => {
 			res.redirect('/heroes')
@@ -25,10 +24,10 @@ app.prepare()
 			req.url = req.url.replace(/\/$/, '')
 			return handle(req, res)
 		})
-
-		server.listen(3000, (err) => {
+		const port = process.env.PORT || 3000
+		server.listen(port, (err) => {
 			if (err) throw err
-			console.log('> Ready on http://localhost:3000')
+			console.log(`> Ready on http://localhost:${port}`)
 		})
 	})
 	.catch((ex) => {
