@@ -91,7 +91,7 @@ $> npm install && npm build && npm start
   - [x] 會顯示 Hero 的能力值 (API: `GET https://hahow-recruit.herokuapp.com/users/:userId/profile`) ，並且在數值左右各有一個按鈕，負責做增減功能，另外有一個顯示剩餘的能力點數的地方，一開始預設值是 0
   - [x] “Hero Profile“ 最下方有一個儲存按鈕，按下按鈕後，會將現在設定的能力值提交更新 server 上的資料 (API: `PATCH https://hahow-recruit.herokuapp.com/users/1/profile`)，送出的能力值總和必須與拿到的時候相同
 Hero 能力值不能小於零
-  - [ ] 更新成功、失敗
+  - [x] 更新成功、失敗
 
 ### State
 

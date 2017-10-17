@@ -12,10 +12,12 @@ Router.onRouteChangeError = () => NProgress.done()
 import Logo from '../components/Logo'
 class Main extends React.Component {
 	render() {
-		const { children, heroes } = this.props
+		const { children, heroes, title } = this.props
 		return (
 			<div style={{ marginBottom: 20 }}>
 				<Head>
+					<title>{title ? `${title}@HahowHero` : 'HahowHero'}</title>
+					<meta charSet='utf-8' />
 					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 					<link prefetch href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"/>
 					<link rel='stylesheet' type='text/css' href='/static/ngprogress.css' />

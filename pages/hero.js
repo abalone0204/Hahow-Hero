@@ -17,7 +17,7 @@ const Hero =  ({
 	submitHeroProfile,
 }) => {
 	return (
-		<Layout heroes={hero.data}>
+		<Layout heroes={hero.data} title={currentHero.name}>
 			<HeroProfile
 				status={profile.status}
 				errorMessage={profile.errorMessage}
