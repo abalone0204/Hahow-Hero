@@ -1,20 +1,37 @@
 import React from 'react'
 
-
 class Openning extends React.Component {
+
 	state = {
-		play: true
+		step: 0
 	}
-	componentDidMount() {
-		setTimeout(() => this.setState({ play: false }), 3000)
-	}
+
 	render() {
-		const { play } = this.state
+		const { step } = this.state
+		const { children } = this.props
 		return (
 			<div>
 				<div className="container">
-					<div className={play ? 'gif' : 'hide'}/>
-					<div className="company">
+					<div className={`body--${step}`}>
+						{children}
+					</div>
+					{step === 0 &&
+						<img
+							src="/static/marvel-frame-1.jpg"
+							className="first-frame"
+							alt="first frame of marvel"
+						/>
+					}
+					{ typeof window !== 'undefined' &&
+						<img
+							src="/static/marvel.gif"
+							onLoad={(e) => this.setState({ step: 1 }, () => {
+								setTimeout(() => this.setState({ step: 2 }), 3000)
+							})}
+							className={`gif--${step}`}
+						/>
+				  }
+					<div className={`company--${step}`}>
 						Hahow
 						<span className="project">hero</span>
 					</div>
@@ -22,6 +39,7 @@ class Openning extends React.Component {
 				<style jsx>{`
 					.container {
 						display: flex;
+						flex-wrap: wrap;
 						align-items: center;
 						height: 216px;
 					}
@@ -46,20 +64,45 @@ class Openning extends React.Component {
 							opacity: 0;
 						}
 					}
-					.hide {
+
+					.gif--0,
+					.gif--2 {
 						display: none;
 					}
-					.gif {
+					.first-frame {
 						position: absolute;
-						background: url(/static/marvel.gif);
-						background-size: cover;
 						width: 100%;
-						height: 100%;
+						min-height: 100vh;
+						top: 0;
+						left: 0;
+					}
+					.gif--1 {
+						position: absolute;
+						width: 100%;
+						min-height: 100vh;
 						top: 0;
 						left: 0;
 						opacity: 0;
 						animation: fadeOut 3s 1;
 					}
+					.body--0,
+					.body--1,
+					.body--2 {
+						width: 100%;
+						transition: opacity 3s ease;
+					}
+					.body--0 {
+						visibility: hidden;
+					}
+					.body--1 {
+						visibility: visible;
+						opacity: 1;
+					}
+					.body--2 {
+						transition: opacity 3s ease;
+						opacity: 1;
+					}
+
 					@keyframes zoomOut {
 						0% {
 								transform: scale(2.0);
@@ -68,7 +111,15 @@ class Openning extends React.Component {
 								transform: scale(1.0);
 						}
 					}
-					.company {
+					.company--0 {
+						transform: scale(2.0);
+					}
+					.company--1 {
+						animation: zoomOut 3s ease-in-out 1;
+					}
+					.company--0,
+					.company--1,
+					.company--2 {
 						pointer-events: none;
 						position: relative;
 						border: solid 1px #fff;
@@ -80,6 +131,7 @@ class Openning extends React.Component {
 						width: 300px;
 						font-size: 5.5rem;
 					}
+
 					.project {
 						font-size: 1rem;
 						position: absolute;

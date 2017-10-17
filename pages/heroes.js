@@ -4,19 +4,22 @@ import configureStore from '../store/configureStore'
 import fetchHeroes from '../actions/fetchHeroes'
 import Layout from '../layouts/Main'
 import Opening from '../components/Opening'
+import HeroList from '../components/HeroList'
 
 const Heroes = (props) => {
 	return (
-		<Layout heroes={props.hero.data}>
-			<Opening/>
+		<Layout>
+			<Opening>
+				<HeroList heroes={props.hero.data} />
+			</Opening>
 		</Layout>
 	)
 }
 
 Heroes.getInitialProps = async function (context) {
-	const { isServer, store } = context
+	const { store } = context
 	await store.dispatch(fetchHeroes())
-	return { isServer }
+	return {}
 }
 
 const mapDispatchToProps = (dispatch) => {

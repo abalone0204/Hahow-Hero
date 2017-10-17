@@ -2,7 +2,6 @@ import React from 'react'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 import Head from 'next/head'
-import HeroList from '../components/HeroList'
 
 Router.onRouteChangeStart = () => {
 	NProgress.start()
@@ -12,7 +11,7 @@ Router.onRouteChangeError = () => NProgress.done()
 import Logo from '../components/Logo'
 class Main extends React.Component {
 	render() {
-		const { children, heroes, title } = this.props
+		const { children, title } = this.props
 		return (
 			<div style={{ marginBottom: 20 }}>
 				<Head>
@@ -26,13 +25,12 @@ class Main extends React.Component {
 					<nav>
 						<Logo />
 					</nav>
-					<HeroList heroes={heroes} />
 					{children}
 				</div>
 				<style jsx global>{`
 				  nav {
 						position: relative;
-						padding: 1rem;
+						padding: 0.5rem;
 					}
 					body {
 						font-family: 'Ubuntu', sans-serif;
