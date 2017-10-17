@@ -12,8 +12,8 @@
     "production": {
       "plugins": [
         ["transform-assets-import-to-string", {
-          "baseDir": "/hahow",
-          "baseUri": "https://assets.dennyku.com",
+          "baseDir": "/static",
+          "baseUri": "https://assets.dennyku.com/hahow",
           "extensions": [".jpg", ".png", ".mp4", ".css"]
         }]
       ]

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
     "start": "NODE_ENV=production node server.js",
     "heroku-postbuild": "next build"
   },
@@ -37,6 +37,7 @@
     }
   },
   "dependencies": {
+    "babel-plugin-transform-assets-import-to-string": "^1.0.1",
     "express": "^4.16.2",
     "isomorphic-unfetch": "^2.0.0",
     "next": "^4.0.3",
@@ -46,7 +47,6 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "babel-plugin-transform-assets-import-to-string": "^1.0.1"
+    "redux-thunk": "^2.2.0"
   }
 }
