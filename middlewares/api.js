@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch'
-import { CALL_API } from '../constants'
+import { CALL_API, HEROES_RESPONSE } from '../constants'
 
 const API_ROOT = 'https://hahow-recruit.herokuapp.com/'
 
@@ -63,10 +63,19 @@ export default store => next => action => {
 	} else {
 		promise = callApi(endpoint, 'GET')
 	}
+
 	return promise.then(
 		response => {
 			if (params && params.id) {
 				response.id = params.id
+			}
+			if (successType === HEROES_RESPONSE) {
+				response = response.map(r => {
+					if (!r.image.match(/^https/)) {
+						r.image = r.image.replace(/^http/, 'https')
+					}
+					return r
+				})
 			}
 			next(actionWith({
 				response,
