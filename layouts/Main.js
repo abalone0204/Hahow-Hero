@@ -9,7 +9,7 @@ Router.onRouteChangeStart = () => {
 }
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
-
+import Logo from '../components/Logo'
 class Main extends React.Component {
 	render() {
 		const { children, heroes } = this.props
@@ -21,10 +21,17 @@ class Main extends React.Component {
 					<link rel='stylesheet' type='text/css' href='/static/ngprogress.css' />
 				</Head>
 				<div className="main">
+					<nav>
+						<Logo />
+					</nav>
 					<HeroList heroes={heroes} />
 					{children}
 				</div>
 				<style jsx global>{`
+				  nav {
+						position: relative;
+						padding: 1rem;
+					}
 					body {
 						font-family: 'Ubuntu', sans-serif;
 						background: #282a2c;
@@ -33,7 +40,6 @@ class Main extends React.Component {
 					.main {
 						max-width: 768px;
 						margin: 0 auto;
-						padding-top: 1.5rem;
 					}
 				`}</style>
 			</div>
