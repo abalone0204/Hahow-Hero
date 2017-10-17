@@ -11,10 +11,16 @@ const callApi = async function(endpoint, method='GET', body) {
 	const options = (method === 'GET') ? { method } :{ method, body: JSON.stringify(body), headers: {
 		'Content-Type': 'application/json'
 	}}
+
 	const res = await fetch(fullUrl, options)
-	const json = await res.json()
-	if (!res.ok) return Promise.reject(json)
-	return Promise.resolve(json)
+	if (!res.ok) return Promise.reject(res.statusText)
+
+	const isJSON = (response) => response.headers.get('content-type').startsWith('application/json')
+	if (isJSON(res)) {
+		const json = await res.json()
+		return Promise.resolve(json)
+	}
+	return Promise.resolve({})
 }
 
 export default store => next => action => {
