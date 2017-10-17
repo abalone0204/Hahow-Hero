@@ -1,0 +1,22 @@
+{
+  "presets": ["next/babel"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["transform-assets-import-to-string", {
+          "baseDir": "/static",
+          "extensions": [".jpg", ".png", ".mp4", ".css"]
+        }]
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["transform-assets-import-to-string", {
+          "baseDir": "/hahow",
+          "baseUri": "https://assets.dennyku.com",
+          "extensions": [".jpg", ".png", ".mp4", ".css"]
+        }]
+      ]
+    }
+  }
+}

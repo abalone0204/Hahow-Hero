@@ -1,4 +1,6 @@
 import React from 'react'
+import frame1 from '../static/marvel-frame-1.jpg'
+import openingVideo from '../static/marvel.mp4'
 
 class Openning extends React.Component {
 
@@ -6,31 +8,42 @@ class Openning extends React.Component {
 		step: 0
 	}
 
+	componentDidMount() {
+		const video = this.video
+		if (video) {
+			const handler = (e) => {
+				this.setState({ step: 1 }, () => {
+					setTimeout(() => this.setState({ step: 2 }), 3000)
+				})
+				video.removeEventListener('canplay', handler)
+			}
+			video.addEventListener('canplay', handler)
+		}
+	}
 	render() {
 		const { step } = this.state
-		const { children } = this.props
+		const { children,  play } = this.props
+		if (!play) {
+			return children
+		}
 		return (
 			<div>
 				<div className="container">
 					<div className={`body--${step}`}>
 						{children}
 					</div>
+
 					{step === 0 &&
 						<img
-							src="/static/marvel-frame-1.jpg"
+							src={frame1}
 							className="first-frame"
 							alt="first frame of marvel"
 						/>
 					}
-					{ typeof window !== 'undefined' &&
-						<img
-							src="/static/marvel.gif"
-							onLoad={(e) => this.setState({ step: 1 }, () => {
-								setTimeout(() => this.setState({ step: 2 }), 3000)
-							})}
-							className={`gif--${step}`}
-						/>
-				  }
+
+					<video loop autoPlay className={`animation--${step}`} ref={(video) => this.video = video}>
+						<source src={openingVideo} type="video/mp4" />
+					</video>
 					<div className={`company--${step}`}>
 						Hahow
 						<span className="project">hero</span>
@@ -65,8 +78,8 @@ class Openning extends React.Component {
 						}
 					}
 
-					.gif--0,
-					.gif--2 {
+					.animation--0,
+					.animation--2 {
 						display: none;
 					}
 					.first-frame {
@@ -76,9 +89,8 @@ class Openning extends React.Component {
 						top: 0;
 						left: 0;
 					}
-					.gif--1 {
+					.animation--1 {
 						position: absolute;
-						width: 100%;
 						min-height: 100vh;
 						top: 0;
 						left: 0;
@@ -124,7 +136,6 @@ class Openning extends React.Component {
 						position: relative;
 						border: solid 1px #fff;
 						padding: 8px 4px 0 0;
-						animation: zoomOut 3s ease-in-out 1;
 						margin: auto auto;
 						text-align: center;
 						color: #fff;

@@ -8,7 +8,6 @@ import submitHeroProfile from '../actions/submitHeroProfile'
 import updateHeroAttr from '../actions/updateProfileAttr'
 import HeroProfile from '../components/HeroProfile'
 import Layout from '../layouts/Main'
-import HeroList from '../components/HeroList'
 
 const Hero =  ({
 	hero,
@@ -18,8 +17,11 @@ const Hero =  ({
 	submitHeroProfile,
 }) => {
 	return (
-		<Layout heroes={hero.data} title={currentHero.name}>
-			<HeroList heroes={hero.data} />
+		<Layout
+			playOpening={false}
+			heroes={hero.data}
+			title={currentHero.name}
+		>
 			<HeroProfile
 				status={profile.status}
 				errorMessage={profile.errorMessage}
