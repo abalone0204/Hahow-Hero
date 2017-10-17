@@ -21,8 +21,8 @@ class Main extends React.Component {
 					<title>{title ? `${title}@HahowHero` : 'HahowHero'}</title>
 					<meta charSet="utf-8" />
 					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" />
-					<link rel="stylesheet" type="text/css" href={NGProgressCSS} />
+					<link rel="preload" href="https://fonts.googleapis.com/css?family=Ubuntu" as="style"/>
+					<link rel="preload" href={NGProgressCSS} as="style" />
 				</Head>
 				<div className="main">
 					<nav>
