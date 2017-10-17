@@ -1,11 +1,20 @@
 import AttrBlock  from './AttrBlock'
 import Button from './Button'
 
-const HeroProfile = ({ name , str, int, agi, luk, remain, updateHeroAttr, submitHeroProfile }) => {
+const HeroProfile = ({ warnMessage, errorMessage, status , name , str, int, agi, luk, remain, updateHeroAttr, submitHeroProfile }) => {
 	return (
 		<div className="container">
 			<h2>{name}</h2>
-			<div className="status">
+			{status === 'loading' &&
+				<div className="loading">
+					loading ...
+				</div>
+			}
+			<div className={`message msg--${status}`}>
+				{status === 'failed' &&	`failed: ${errorMessage}` }
+				{status === 'warned' &&	`${warnMessage}` }
+			</div>
+			<div className="attrs">
 				<AttrBlock attr="str" val={str} update={updateHeroAttr}/>
 				<AttrBlock attr="int" val={int} update={updateHeroAttr}/>
 				<AttrBlock attr="agi" val={agi} update={updateHeroAttr}/>
@@ -20,6 +29,35 @@ const HeroProfile = ({ name , str, int, agi, luk, remain, updateHeroAttr, submit
 				}}>save</Button>
 			</div>
 			<style jsx>{`
+			@keyframes blink {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			.loading {
+				position: absolute;
+				font-size: 1.25rem;
+				top: 1rem;
+				right: 1rem;
+			}
+			.loading {
+				animation: blink 0.5s infinite;
+			}
+			.message {
+				width: 100%;
+				text-align: center;
+				height: 2rem;
+			}
+			.msg--failed {
+				color: red;
+			}
+			.msg--warned {
+				color: #f4c31c;
+			}
+
 			@keyframes fadeIn {
 				0% {
 					opacity: 0;
@@ -32,6 +70,8 @@ const HeroProfile = ({ name , str, int, agi, luk, remain, updateHeroAttr, submit
 				width: 100%;
 				text-align: center;
 				margin: 5px auto;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
 			}
 			.container {
 				display: flex;
@@ -53,7 +93,7 @@ const HeroProfile = ({ name , str, int, agi, luk, remain, updateHeroAttr, submit
 				box-shadow: 0 0 25px #00fffd;
 				transition: 1s all;
 			}
-			.status {
+			.attrs {
 				flex: 1;
 				width: 300px;
 			}
