@@ -7,7 +7,7 @@
     "build": "next build",
     "dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
-    "test": "jest"
+    "heroku-postbuild": "next build"
   },
   "keywords": [
     "hahow",
