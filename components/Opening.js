@@ -1,27 +1,44 @@
 import React from 'react'
 import frame1 from '../static/marvel-frame-1.jpg'
 import openingVideo from '../static/marvel.mp4'
+import openingGIF from '../static/marvel.gif'
+
 
 class Openning extends React.Component {
 
 	state = {
-		step: 0
+		step: 0,
+		isMobile: false,
 	}
 
 	componentDidMount() {
 		const video = this.video
 		if (video) {
 			const handler = (e) => {
-				this.setState({ step: 1 }, () => {
-					setTimeout(() => this.setState({ step: 2 }), 3000)
+				this.startAnimation()
+				// Hack for not loop on mobile devices
+				video.addEventListener('ended', () => {
+					video.currentTime=0.1; video.play();
 				})
 				video.removeEventListener('canplay', handler)
 			}
 			video.addEventListener('canplay', handler)
 		}
+		if (
+			typeof window !== 'undefined' &&
+			window.matchMedia("(max-width: 500px)").matches
+		) {
+			this.setState({ isMobile: true })
+		}
+
+	}
+	startAnimation = () => {
+		this.setState({ step: 1 }, () => {
+			setTimeout(() => this.setState({ step: 2 }), 3000)
+		})
 	}
 	render() {
-		const { step } = this.state
+		const { step, isMobile } = this.state
 		const { children,  play } = this.props
 		if (!play) {
 			return children
@@ -41,9 +58,16 @@ class Openning extends React.Component {
 						/>
 					}
 
-					<video loop autoPlay className={`animation--${step}`} ref={(video) => this.video = video}>
-						<source src={openingVideo} type="video/mp4" />
-					</video>
+					{!isMobile &&
+						<video loop autoPlay className={`animation--${step}`} ref={(video) => this.video = video}>
+							<source src={openingVideo} type="video/mp4" />
+						</video>
+					}
+
+					{isMobile &&
+						<img src={openingGIF} alt="Opening GIF" className={`animation--${step}`} onLoad={() => this.startAnimation() } />
+					}
+
 					<div className={`company--${step}`}>
 						Hahow
 						<span className="project">hero</span>

@@ -1,7 +1,7 @@
 # README: Hahow Hero
 
 - [Instructions by Hahow](http://hahow-recruit.herokuapp.com/frontend)
-
+- [hahow.dennyku.com](https://hahow.dennyku.com)
 # 我們該如何執行完成的package
 
 - nodejs version: v7.8.0
@@ -51,8 +51,11 @@ $> npm install && npm build && npm start
   - async, await 解決 -> `store.dispatch` 可以回傳 Promise
 - 剩餘點數
   - 移到 middleware 處理
-- 開場動畫結束後要把那張 gif 處理掉
- - workaround: setTimeout 把東西變成 display: none
+- 開場動畫
+ - 結束後要把那張 gif 處理掉 setTimeout 把東西變成 display: none
+ - 用 onLoad Event 來解決，比較 tricky 的點是在 Server side 時不要去 render 圖片
+ - render mp4 instead gif
+ - 但是手機 video tag autoplay 和 loop 基本上被封印，所以在行動裝置上還是得上個 gif
 
 ---
 
@@ -92,6 +95,9 @@ $> npm install && npm build && npm start
   - [x] “Hero Profile“ 最下方有一個儲存按鈕，按下按鈕後，會將現在設定的能力值提交更新 server 上的資料 (API: `PATCH https://hahow-recruit.herokuapp.com/users/1/profile`)，送出的能力值總和必須與拿到的時候相同
 Hero 能力值不能小於零
   - [x] 更新成功、失敗
+
+- [ ] Unit test
+- [ ] Download bar for `opening.gif`
 
 ### State
 

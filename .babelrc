@@ -5,7 +5,7 @@
       "plugins": [
         ["transform-assets-import-to-string", {
           "baseDir": "/static",
-          "extensions": [".jpg", ".png", ".mp4", ".css"]
+          "extensions": [".jpg", ".png", ".mp4", ".css", ".gif"]
         }]
       ]
     },
@@ -14,7 +14,7 @@
         ["transform-assets-import-to-string", {
           "baseDir": "/static",
           "baseUri": "https://assets.dennyku.com/hahow",
-          "extensions": [".jpg", ".png", ".mp4", ".css"]
+          "extensions": [".jpg", ".png", ".mp4", ".css", ".gif"]
         }]
       ]
     }
