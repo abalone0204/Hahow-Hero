@@ -26,8 +26,6 @@
     }
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^2.7.1",
-    "babel-plugin-transform-assets-import-to-string": "^1.0.1",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.8.0",
     "eslint-plugin-react": "^7.4.0",
@@ -48,6 +46,7 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "babel-plugin-transform-assets-import-to-string": "^1.0.1"
   }
 }
