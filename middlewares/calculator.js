@@ -14,13 +14,16 @@ export default store => next => action => {
 		return next(action)
 	}
 	next(action)
-	const { id, attr, val} = action.params
+	const { id, attr, val } = action.params
 
 	const throwError = (error) => next({ type: HERO_PROFILE_ERROR, error })
 	const throwWarn = (warn) => next({ type: HERO_PROFILE_WARN, warn })
 	const setAttr = (val) => next({ type: HERO_ATTR_SET, id, attr, val })
 	const setRemain = (val) => next({ type: HERO_REMAIN_SET, id, val })
-
+	if (!id) {
+		throwError('Should specify id.')
+		return
+	}
 	if (typeof val !== 'string' || ['inc', 'dec'].indexOf(val) === -1) {
 		throwError('Operator should be "inc" or "dec".')
 		return
