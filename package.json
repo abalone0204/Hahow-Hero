@@ -63,7 +63,6 @@
       "js",
       "jsx"
     ],
-    "collectCoverage": true,
-    "coverageFormats": ["json", "html"]
+    "collectCoverage": true
   }
 }
