@@ -40,17 +40,17 @@ $> npm install && npm build && npm start
 └── store                       # Application 在畫面上的 state 都是根據這裡來顯示
 ```
 
+> 目前 Unit tests 只包含 reducer 與 middleware XD
+
 # 你對於所有使用到的第三方library的理解，以及他們的功能簡介
 
 - next.js:
   - 功能：React 的 render 框架 (包括 SSR 以及 router 的管理)
   - 優點：
-    - zeit
-    - 能很好的跟 webpack 或 babel 做整合
+    - 能很好的跟 webpack 或 babel 做整合（自身就帶了一個 babel preset 以及 webpack config XD）
     - 相較於自幹的 SSR，next.js 讓程式碼看起來清爽很多（各種 dehydrate 及 rehydrate）
   - 缺點：
-    - 在跟 redux 協作時必須要引入 `next-redux-wrapper` 這種 wrapper，不過它做的事情其實只是在 `getInitialProps` 中去把 store 裡的東西打進 component 而已。
-
+    - 在跟 redux 或是其他 state management 的 library 協作時必須要引入 `next-redux-wrapper` 這種 wrapper，不過它做的事情其實只是在 `getInitialProps` 中去把 store 裡的東西打進 component 而已
 
 - redux:
   - 畫面狀態管理
@@ -62,8 +62,14 @@ $> npm install && npm build && npm start
   - 負責跟 DOM 互動，以及提供各種好用的 Synthetic event、life cycle methods, etc.
 
 - jest:
-  - 測試
+  - 各種測試，本身提供很多東西，不用另外裝 assertion、mock 之類的
 
+以下是一些比較瑣碎的東西
+
+- nprogress: 負責出 loading 時的動畫
+- isomorphic-unfetch: 算是在 server、client 都能使用的 fetch polyfill
+- cz-conventional-changelog: 強迫自己 commit 時能寫完整一點的描述
+- babel 相關的東西就是為了支援目前沒有的語法，不過隨著 nodejs 本身支援的特性越來越多，babel 現在在轉型變成一個提供語言「插件」的地方
 
 # 你在程式碼中寫註解的原則，遇到什麼狀況會寫註解
 
